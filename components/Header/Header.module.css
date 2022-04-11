@@ -3,8 +3,16 @@
     padding: 0.25rem 0 0 0.25rem;
 }
 
-.Header__item:hover {
+.Header__item {
+    font-size: 16px;
+    margin-left: 3rem;
+}
+
+.Header__item_content {
+    color: white !important;
+}
+
+.Header__item_content:hover {
     text-decoration-line: none;
-    color: white;
 }
 

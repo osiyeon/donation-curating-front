@@ -19,14 +19,14 @@ function Header({ searchBox }) {
             <NavbarToggler onClick={toggle} />
             <Collapse navbar isOpen={isOpen}>
                 <Nav navbar >
-                    <NavItem>
-                        <NavLink href="/intro/introduction" className={styles.Header__item}>캠페인</NavLink>
+                    <NavItem className={styles.Header__item}>
+                        <NavLink href="/intro/introduction" className={styles.Header__item_content}>캠페인</NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink href="/introduction" className={styles.Header__item}>단체</NavLink>
+                    <NavItem className={styles.Header__item}>
+                        <NavLink href="/introduction" className={styles.Header__item_content}>단체</NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink href="/intro/introduction" className={styles.Header__item}>소개</NavLink>
+                    <NavItem className={styles.Header__item}>
+                        <NavLink href="/intro/introduction" className={styles.Header__item_content}>소개</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>

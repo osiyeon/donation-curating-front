@@ -6,7 +6,7 @@
 .SearchBox__input {
     border-radius: 2.5rem;
     box-shadow: 0px 1.5px 5px rgb(0 0 0 / 10%);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     padding-left: 3rem;
     padding-right: 3rem;
     font-size: 1rem;
@@ -15,6 +15,6 @@
 .SearchBox__searchIcon {
     width: 1.5rem;
     position: relative;
-    top: 0.2rem;
+    top: 0.5rem;
     left: -2.5rem;
 }
