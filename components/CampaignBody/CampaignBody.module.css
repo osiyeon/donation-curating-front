@@ -1,0 +1,9 @@
+.CampaignBody__title {
+    margin-top: 3rem;
+}
+
+.CampaignBody__nav {
+    justify-content: space-around;
+    width: 100%;
+    cursor: pointer;
+}

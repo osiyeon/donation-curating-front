@@ -1,6 +1,7 @@
 .Header {
     background-color: #8a2be2;
     padding: 0.25rem 0 0 0.25rem;
+    
 }
 
 .Header__item {
@@ -16,3 +17,24 @@
     text-decoration-line: none;
 }
 
+.Header__search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0 !important;
+    width: 16rem;
+}
+.Header__search_input {
+    font-size: 14px;
+}
+.Header__search_button {
+    font-size: 14px;
+    background-color: #C6C4FF;
+    color: rgba(0, 0, 0, 0.65);
+    width: 3.5rem;
+    height: 36.5px;
+    margin-left: 0.1rem;
+}
+
+.Header__search_button:hover {
+    background-color: #9990FF;
+}
