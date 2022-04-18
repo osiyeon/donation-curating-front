@@ -7,3 +7,34 @@
     width: 100%;
     cursor: pointer;
 }
+
+.CampaignBody__nav_active {
+    background-color: #C6C4FF;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.CampaignBody__nav_item {
+    border-radius: 0.5rem 0.5rem 0 0;
+    border: 1px solid #EBEBEB;
+}
+
+.CampaignBody__nav_item>a {
+    color: black;
+}
+
+.CampaignBody__nav_item>a:hover {
+    color: black;
+    text-decoration-line: none;
+
+}
+
+.CampaignBody__nav_active>a {
+    color: black;
+
+}
+
+.CampaignBody__nav_active>a:hover {
+    color: black;
+    text-decoration-line: none;
+
+}

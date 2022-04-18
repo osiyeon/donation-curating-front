@@ -4,23 +4,6 @@
     align-items: center;
 }
 
-.MainBody__badge_wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin: 1.2rem 0 2rem 0;
-}
-
-.MainBody__button {
-    border-radius: 3rem;
-    padding: 0.2rem 1.5rem;
-    margin-right: 1rem;
-    font-size: 14px;
-}
-
-.MainBody__button:hover {
-    background-color: #7749F8;
-}
-
 .MainBody__campainCard {
     display: flex;
 }
