@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { NavLink, Nav, NavItem, TabContent, TabPane, Row } from "reactstrap";
 import axios from 'axios';
 
-import BodyFrame from "../BodyFrame";
+import BodyFrame from "../../common/BodyFrame";
 import CampainCard from "../CampainCard";
-import HashTagWrapper from "../HashTagWrapper";
+import HashTagWrapper from "../../common/HashTagWrapper";
 
 import classNames from "classnames";
 import styles from "./CampaignBody.module.css"

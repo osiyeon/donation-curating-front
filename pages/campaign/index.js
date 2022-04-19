@@ -1,5 +1,5 @@
-import CampaignBody from "../../components/CampaignBody";
-import Header from "../../components/Header/Header";
+import CampaignBody from "../../components/campaign/CampaignBody";
+import Header from "../../components/common/Header";
 
 function Campaign() {
     return (

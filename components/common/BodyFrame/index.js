@@ -1,3 +1,3 @@
 import BodyFrame from "./BodyFrame";
 
-export default BodyFrame
+export default BodyFrame;

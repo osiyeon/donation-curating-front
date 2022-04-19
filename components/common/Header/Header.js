@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Nav, NavItem, NavLink, Collapse, FormGroup, Input, Button } from 'reactstrap'
 import Image from 'next/image'
+import Router from 'next/router'
 
 import styles from './Header.module.css'
 
@@ -8,7 +9,29 @@ import styles from './Header.module.css'
 function Header({ searchBox }) {
 
     const [isOpen, setOpen] = useState(false)
+    const [searchValue, setSearchValue] = useState('');
 
+    const handleInputChange = (e) => {
+        setSearchValue(e.target.value)
+        console.log({ searchValue })
+    }
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            Router.push({
+                pathname: '/search',
+                query: { value: searchValue }
+            })
+        }
+    }
+
+    const handleClick = () => {
+        Router.push({
+            pathname: '/search',
+            query: { value: searchValue }
+        })
+
+    }
     function toggle() {
         setOpen(!isOpen)
     }
@@ -31,10 +54,11 @@ function Header({ searchBox }) {
                 </Nav>
             </Collapse>
             {searchBox && (<FormGroup className={styles.Header__search}>
-                <Input type="search" name="search" id="exampleSearch" placeholder="검색어를 입력해주세요" className={styles.Header__search_input} />
-                <Button size="sm" className={styles.Header__search_button}>검색</Button>
-            </FormGroup>)}
-        </Navbar>
+                <Input type="search" name="search" id="exampleSearch" placeholder="검색어를 입력해주세요" className={styles.Header__search_input} onChange={handleInputChange} onKeyPress={handleKeyPress} />
+                <Button size="sm" className={styles.Header__search_button} onClick={handleClick}>검색</Button>
+            </FormGroup>)
+            }
+        </Navbar >
 
     );
 }

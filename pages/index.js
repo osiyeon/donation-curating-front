@@ -1,5 +1,5 @@
 import { Card, CardImg, CardImgOverlay, CardText } from "reactstrap"
-import Header from '../components/Header/Header'
+import Header from '../components/common/Header'
 import MainBody from "../components/MainBody/MainBody"
 
 export default function Home() {

@@ -1,11 +1,11 @@
 import { Button, Row } from 'reactstrap'
-import SearchBox from "../SearchBox/SearchBox"
-import DonationOrgCard from "../DonationOrgCard/DonationOrgCard"
-import CampainCard from '../CampainCard/CampainCard'
-import HashTagWrapper from '../HashTagWrapper'
+import SearchBox from "../common/SearchBox"
+import DonationOrgCard from "../Organization/DonationOrgCard/DonationOrgCard"
+import CampainCard from '../campaign/CampainCard'
+import HashTagWrapper from '../common/HashTagWrapper'
 
 import style from "./MainBody.module.css"
-import BodyFrame from '../BodyFrame'
+import BodyFrame from '../common/BodyFrame'
 
 export default function MainBody() {
 

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import axios from 'axios';
 
-import BodyFrame from "../BodyFrame";
+import BodyFrame from "../../common/BodyFrame";
 import DonationOrgCard from "../DonationOrgCard"
-import HashTagWrapper from "../HashTagWrapper";
+import HashTagWrapper from "../../common/HashTagWrapper";
 
 import styles from "./OrganizationBody.module.css"
 

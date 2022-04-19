@@ -1,6 +1,5 @@
-import CampaignBody from "../../components/CampaignBody";
-import Header from "../../components/Header/Header";
-import OrganizationBody from "../../components/OrganizationBody/OrganizationBody";
+import Header from "../../components/common/Header";
+import OrganizationBody from "../../components/organization/OrganizationBody/OrganizationBody";
 
 function Organization() {
     return (

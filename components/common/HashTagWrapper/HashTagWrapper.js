@@ -1,7 +1,4 @@
 import { Button, Row } from 'reactstrap'
-import SearchBox from "../SearchBox/SearchBox"
-import DonationOrgCard from "../DonationOrgCard/DonationOrgCard"
-import CampainCard from '../CampainCard/CampainCard'
 
 import style from "./HashTagWrapper.module.css"
 
