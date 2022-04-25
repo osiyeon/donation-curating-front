@@ -4,6 +4,14 @@
     align-items: center;
 }
 
+.MainBody__title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 4rem;
+}
+
 .MainBody__campainCard {
     display: flex;
 }

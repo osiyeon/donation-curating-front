@@ -1,31 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from 'axios';
-
+import axios from "axios";
 
 import Header from "../../components/common/Header/Header";
 import SearchBox from "../../components/common/SearchBox";
 import BodyFrame from "../../components/common/BodyFrame";
+import CampainCard from "../../components/campaign/CampainCard";
 
 function Search() {
-    const router = useRouter();
-    const { value } = router.query;
-    console.log({ value })
+  const router = useRouter();
+  const { value } = router.query;
 
-    useEffect(async () => {
-        const res = await axios.get(`/api/v1/search?keyword=${value}`)
-        console.log("res: ", res.data)
+  const [campaignList, setCampaignList] = useState([]);
 
-    }, [])
-    return (
-        <>
-            <Header />
-            <BodyFrame>
-                <h3>{value}</h3>
-                <SearchBox />
-            </BodyFrame>
-        </>
-    )
+  useEffect(async () => {
+    console.log({ value });
+    const { data: campaigns } = await axios.get(
+      `/api/v1/search?keyword=${value}`
+    );
+    setCampaignList(campaigns);
+  }, []);
+  return (
+    <>
+      <Header />
+      <BodyFrame>
+        <h3>{value}</h3>
+        <SearchBox />
+        {campaignList.map(list => (
+          <CampainCard campaign={list} />
+        ))}
+      </BodyFrame>
+    </>
+  );
 }
 
 export default Search;
