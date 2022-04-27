@@ -1,6 +1,7 @@
 import { Button, Row } from "reactstrap";
+import { useSelector } from "react-redux";
 import SearchBox from "../common/SearchBox";
-import DonationOrgCard from "../Organization/DonationOrgCard/DonationOrgCard";
+import OrganizationCard from "../organization/OrganizationCard/OrganizationCard";
 import CampainCard from "../campaign/CampainCard";
 import HashTagWrapper from "../common/HashTagWrapper";
 
@@ -12,17 +13,24 @@ import Router from "next/router";
 
 function MainBody({ campaignList, organizationList }) {
   const [hashTagList, setHashTagList] = useState([]);
+  // const campaignList = useSelector(state => state.campaignReducer);
+
+  // console.log({ campaignList });
 
   useEffect(async () => {
-    const { data } = await axios.get(`/api/v1/hashtag`);
-    setHashTagList(data);
+    const { data: allHashTags } = await axios.get(`/api/v1/hashtags`);
+    setHashTagList(allHashTags);
   }, []);
 
   const onClickHandler = e => {
-    console.log("e.id: ", e.target.id);
-    if (e.target.id === "더보기") {
+    if (e.target.id === "campaign") {
       Router.push({
         pathname: "/campaign"
+      });
+    }
+    if (e.target.id === "organization") {
+      Router.push({
+        pathname: "/organization"
       });
     }
   };
@@ -33,21 +41,33 @@ function MainBody({ campaignList, organizationList }) {
         <SearchBox />
         <HashTagWrapper hashTagList={hashTagList} />
         <div className={style.MainBody__title}>
-          <h3>기부단체</h3>
-          <div onClick={onClickHandler} id="더보기">
+          <div className={style.MainBody__title_text}>기부단체</div>
+          <div
+            onClick={onClickHandler}
+            id="organization"
+            className={style.MainBody__title_more}
+          >
             더보기
           </div>
         </div>
-        <DonationOrgCard organization={organizationList[0]} />
-        <DonationOrgCard organization={organizationList[1]} />
+        <div className={style.MainBody__title_divider}></div>
+        <OrganizationCard organization={organizationList[0]} />
+        <OrganizationCard organization={organizationList[1]} />
         <div className={style.MainBody__title}>
-          <h3>캠페인</h3>
-          <div>더보기</div>
+          <div className={style.MainBody__title_text}>캠페인</div>
+          <div
+            className={style.MainBody__title_more}
+            onClick={onClickHandler}
+            id="campaign"
+          >
+            더보기
+          </div>
         </div>
-        <Row>
+        <div className={style.MainBody__title_divider}></div>
+        <div className={style.MainBody__campaigns}>
           <CampainCard campaign={campaignList[0]} />
           <CampainCard campaign={campaignList[1]} />
-        </Row>
+        </div>
       </div>
     </BodyFrame>
   );

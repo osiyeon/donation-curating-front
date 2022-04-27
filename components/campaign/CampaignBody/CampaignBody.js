@@ -8,20 +8,19 @@ import HashTagWrapper from "../../common/HashTagWrapper";
 
 import classNames from "classnames";
 import styles from "./CampaignBody.module.css";
+import CampaignCard from "../CampainCard";
 
 function CampaignBody() {
   const [activeTab, setActiveTab] = useState("div");
   const [campaignHashTag, setCampaignHashTag] = useState([]);
+  const [campaignList, setCampaignList] = useState([]);
 
   useEffect(async () => {
-    const res = await axios.get("/api/v1/campaigns/");
-    const { data: hashtag } = await axios.get(
-      `/api/v1/campaigns/hashtag?hashtag=의료`
-    );
+    const { data: campaigns } = await axios.get("/api/v1/campaigns/");
+    setCampaignList(campaigns);
+    const { data: hashtagList } = await axios.get(`/api/v1/hashtags/campaign`);
 
-    console.log({ hashtag });
-
-    setCampaignHashTag(hashtag);
+    setCampaignHashTag(hashtagList);
   }, []);
 
   const toggle = tab => {
@@ -29,6 +28,14 @@ function CampaignBody() {
       setActiveTab(tab);
     }
   };
+
+  const givingCampainList = campaignList.filter(
+    list => list.category === "GIVING"
+  );
+
+  const sharingCampainList = campaignList.filter(
+    list => list.category === "SHARING"
+  );
 
   return (
     <BodyFrame>
@@ -64,28 +71,23 @@ function CampaignBody() {
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent activeTab={activeTab}>
+      <TabContent
+        activeTab={activeTab}
+        className={styles.CampaignBody__content}
+      >
         <TabPane tabId="div">
-          나누기
-          <Row>
-            <CampainCard />
-            <CampainCard />
-          </Row>
-          <Row>
-            <CampainCard />
-            <CampainCard />
-          </Row>
+          <div className={styles.CampaignBody__body}>
+            {givingCampainList.map(list => {
+              return <CampaignCard campaign={list} />;
+            })}
+          </div>
         </TabPane>
         <TabPane tabId="mul">
-          곱하기
-          <Row>
-            <CampainCard />
-            <CampainCard />
-          </Row>
-          <Row>
-            <CampainCard />
-            <CampainCard />
-          </Row>
+          <div className={styles.CampaignBody__body}>
+            {sharingCampainList.map(list => {
+              return <CampaignCard campaign={list} />;
+            })}
+          </div>
         </TabPane>
       </TabContent>
     </BodyFrame>

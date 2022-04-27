@@ -1,0 +1,32 @@
+.OrganizationCard__card {
+    margin: 0.25rem 4rem;
+    width: 100%;
+}
+
+.OrganizationCard__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.OrganizationCard__body_title {
+    font-weight: 600;
+    font-size: 1.125rem;
+
+}
+
+.OrganizationCard__card_text {
+    font-size: 14px;
+}
+
+.OrganizationCard__card_badge {
+    border-radius: 1rem;
+    font-size: 13px;
+    padding: 0.3rem 1.2rem;
+    background-color: #E7E7FF !important;
+    border: 1px solid #CED4DA;
+    color: gray;
+    margin-right: 0.7rem;
+}
+

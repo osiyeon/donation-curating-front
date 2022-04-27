@@ -1,12 +1,14 @@
-.DonationOrgCard__card {
-    margin: 1rem 4rem;
+.CampaignCard__card {
+    height: 24rem;
+    width: 26.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.DonationOrgCard__card_text {
+.CampaignCard__card_text {
     font-size: 14px;
 }
 
-.DonationOrgCard__card_badge {
+.CampaignCard__card_badge {
     border-radius: 1rem;
     font-size: 13px;
     padding: 0.3rem 1.2rem;
@@ -14,4 +16,15 @@
     border: 1px solid #CED4DA;
     color: gray;
     margin-right: 0.7rem;
+}
+
+.CampaignCard__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.CampaignCard__body_title {
+    font-weight: 600;
+    font-size: 1.125rem;
 }

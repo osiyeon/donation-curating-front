@@ -1,0 +1,49 @@
+.introduction__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+.introduction__divider {
+    height: 1px;
+    background-color: #DEE2E6;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.introduction__intro {
+    background-color: #F8F9FA;
+    color: #5538EE;
+    height: 195px;
+    width: 100%;
+    text-align: center;
+    padding: 3rem 4rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+.introduction__body {
+    display: flex;
+    width: 100%;
+}
+.introduction__body_wrapper {
+    margin: 1rem 1rem;
+}
+.introduction__body_title {
+    height: 2rem;
+    background-color: #6B4EFF;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.introduction__body_content {
+    background-color: #F8F9FA;
+    height: 7rem;
+    padding: 2rem 2rem;
+    font-size: 0.875rem;
+    line-height: 1.6rem;
+
+}

@@ -1,3 +1,15 @@
+.CampaignBody__body {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.CampaignBody__content {
+    width: 100%;
+}
+
 .CampaignBody__title {
     margin-top: 3rem;
 }

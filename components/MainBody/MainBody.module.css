@@ -9,9 +9,29 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    padding: 0 4rem;
+    margin-top: 1.5rem;
 }
 
-.MainBody__campainCard {
+.MainBody__title_text {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.MainBody__title_more {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: gray;
+}
+
+.MainBody__campaigns {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.25rem;
+}
+.MainBody__title_divider {
+    height: 1px;
+    background-color: #DEE2E6;
+    width: 100%;
+    margin: 0.5rem 0;
 }

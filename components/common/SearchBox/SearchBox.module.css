@@ -6,10 +6,9 @@
 .SearchBox__input {
     border-radius: 2.5rem;
     box-shadow: 0px 1.5px 5px rgb(0 0 0 / 10%);
-    margin-top: 1rem;
     padding-left: 3rem;
     padding-right: 3rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
 }
 
 .SearchBox__searchIcon {
