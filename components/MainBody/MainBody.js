@@ -15,8 +15,6 @@ function MainBody({ campaignList, organizationList }) {
   const [hashTagList, setHashTagList] = useState([]);
   // const campaignList = useSelector(state => state.campaignReducer);
 
-  // console.log({ campaignList });
-
   useEffect(async () => {
     const { data: allHashTags } = await axios.get(`/api/v1/hashtags`);
     setHashTagList(allHashTags);
@@ -35,6 +33,8 @@ function MainBody({ campaignList, organizationList }) {
     }
   };
 
+  console.log({ campaignList, organizationList });
+
   return (
     <BodyFrame>
       <div className={style.MainBody}>
@@ -51,8 +51,14 @@ function MainBody({ campaignList, organizationList }) {
           </div>
         </div>
         <div className={style.MainBody__title_divider}></div>
-        <OrganizationCard organization={organizationList[0]} />
-        <OrganizationCard organization={organizationList[1]} />
+        <OrganizationCard
+          organization={organizationList[0]}
+          campaignList={campaignList}
+        />
+        <OrganizationCard
+          organization={organizationList[1]}
+          campaignList={campaignList}
+        />
         <div className={style.MainBody__title}>
           <div className={style.MainBody__title_text}>캠페인</div>
           <div

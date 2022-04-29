@@ -1,0 +1,12 @@
+.SearchBody {
+    margin-top: 2rem;
+    font-weight: 500;
+}
+
+.SearchBody__campaigns {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}

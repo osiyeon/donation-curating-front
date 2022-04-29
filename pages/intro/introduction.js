@@ -8,6 +8,7 @@ import styles from "./introduction.module.css";
 
 import sharingImg from "../../public/images/sharingIntro.svg";
 import givingImg from "../../public/images/givingIntro.svg";
+import footerImg from "../../public/images/footer.svg";
 
 export default function Introduction() {
   return (
@@ -34,11 +35,12 @@ export default function Introduction() {
             <img src={givingImg.src} height="362px" />
             <div className={styles.introduction__body_title}>곱하기(×)란?</div>
             <div className={styles.introduction__body_content}>
-              기부금을 지불하거나 경제적으로 후원하는 형태의 기부 활동입니다.
-              정기후원, 1:1 후원, 양육 등이 있습니다.{" "}
+              자원 봉사, 재능 기부 등 직접 참여할 수 있는 기부 활동으로서
+              경제적인 부담을 느끼지 않고도 참여할 수 있는 캠페인입니다.
             </div>
           </div>
         </div>
+        <img src={footerImg.src} className={styles.introduction__footer} />
       </BodyFrame>
     </>
   );

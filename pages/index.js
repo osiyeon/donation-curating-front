@@ -21,16 +21,19 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <Card inverse>
-        <CardImg alt="Card image cap" src={banner.src} />
-      </Card>
-      <MainBody
-        campaignList={campaignList}
-        organizationList={organizationList}
-      />
-    </>
+    campaignList.length !== 0 &&
+    organizationList.length !== 0 && (
+      <>
+        <Header />
+        <Card inverse>
+          <CardImg alt="Card image cap" src={banner.src} />
+        </Card>
+        <MainBody
+          campaignList={campaignList}
+          organizationList={organizationList}
+        />
+      </>
+    )
   );
 }
 export default Home;

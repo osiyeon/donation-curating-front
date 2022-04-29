@@ -1,3 +1,7 @@
+.CampaignBody__breadcrumb {
+    background-color: #C6C4FF;
+}
+
 .CampaignBody__body {
     width: 100%;
     display: flex;

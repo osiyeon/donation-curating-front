@@ -3,15 +3,16 @@
     justify-content: center;
     margin: 1.2rem 0;
     flex-wrap: wrap;
+    height: 75px;
+    overflow: hidden;
 }
 
 .HashTagWrapper__button {
     border-radius: 3rem;
-    margin-right: 1rem;
     font-size: 14px;
     width: fit-content;
-    margin-bottom: 0.5rem;
     padding: 0.2rem 0.8rem;
+    margin: 0.25rem 0.5rem;
 }
 
 .HashTagWrapper__button:hover {

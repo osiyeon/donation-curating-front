@@ -1,6 +1,6 @@
 .introduction__title {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     width: 100%;
     justify-content: flex-start;
@@ -37,13 +37,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: center;
+    font-weight: 600;
 }
 
 .introduction__body_content {
     background-color: #F8F9FA;
-    height: 7rem;
     padding: 2rem 2rem;
     font-size: 0.875rem;
     line-height: 1.6rem;
+    font-weight: 500;
+}
 
+.introduction__footer {
+    bottom: -5rem;
+    position: relative;
 }

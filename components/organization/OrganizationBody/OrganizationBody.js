@@ -10,6 +10,7 @@ import styles from "./OrganizationBody.module.css";
 function OrganizationBody() {
   const [orgHashTag, setOrgHashTag] = useState([]);
   const [organizationList, setOrganizationList] = useState([]);
+  const [campaignList, setCampaignList] = useState([]);
 
   useEffect(async () => {
     const { data: organizations } = await axios.get("/api/v1/organizations");
@@ -18,6 +19,8 @@ function OrganizationBody() {
       "/api/v1/hashtags/organization"
     );
     setOrgHashTag(hashTagList);
+    const { data: campaigns } = await axios.get("/api/v1/campaigns");
+    setCampaignList(campaigns);
   }, []);
 
   return (
@@ -25,8 +28,9 @@ function OrganizationBody() {
       <h3 className={styles.OrganizationBody__title}>기부 단체</h3>
       <HashTagWrapper hashTagList={orgHashTag} />
       {organizationList.map(list => {
-        console.log({ list });
-        return <OrganizationCard organization={list} />;
+        return (
+          <OrganizationCard organization={list} campaignList={campaignList} />
+        );
       })}
     </BodyFrame>
   );

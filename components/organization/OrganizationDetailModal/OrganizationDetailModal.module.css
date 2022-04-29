@@ -1,0 +1,48 @@
+.OrganizationDetailModal__header {
+    padding: 1rem 5rem;
+}
+
+.OrganizationDetailModal__image {
+    height: 20rem;
+}
+
+.OrganizationDetailModal__body {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;    
+}
+
+.OrganizationDetailModal__desc {
+    border-radius: 0.5rem;
+    padding: 2rem;
+    font-size: 0.875rem;
+    border: 1px solid #E7E7FF;
+    margin-bottom: 1rem;
+}
+.OrganizationDetailModal__badge-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.OrganizationDetailModal__badge {
+    border-radius: 1rem;
+    font-size: 13px;
+    padding: 0.5rem 1.5rem;
+    background-color: #E7E7FF !important;
+    border: 1px solid #CED4DA;
+    color: #6F6F6F;
+    font-weight: 500;
+    margin: 0 0.5rem;
+}
+
+.OrganizationDetailModal__divider {
+    border: 0.2px solid #E7E7FF;
+    margin: 2rem 0;
+}
+
+.OrganizationDetailModal__campaignCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

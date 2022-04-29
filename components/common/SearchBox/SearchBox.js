@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Input } from "reactstrap";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 import style from "./SearchBox.module.css";
 
 export default function SearchBox() {
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
 
   const handleInputChange = e => {
@@ -12,17 +13,25 @@ export default function SearchBox() {
   };
 
   const handleKeyPress = e => {
-    console.log({ searchValue });
     if (e.key === "Enter") {
-      Router.push({
-        pathname: "/search",
-        query: { value: searchValue }
-      });
+      e.preventDefault();
+      router.push(
+        {
+          pathname: "/search",
+          query: { value: searchValue }
+        },
+        undefined,
+        { shallow: true }
+      );
     }
   };
 
   return (
     <div className={style.SearchBox}>
+      <img
+        src="/images/searchIcon.svg"
+        className={style.SearchBox__searchIcon}
+      />
       <Input
         type="search"
         className={style.SearchBox__input}
@@ -30,10 +39,6 @@ export default function SearchBox() {
         onChange={handleInputChange}
         onKeyPress={handleKeyPress}
         placeholder="검색어를 입력해주세요"
-      />
-      <img
-        src="/images/searchIcon.svg"
-        className={style.SearchBox__searchIcon}
       />
     </div>
   );

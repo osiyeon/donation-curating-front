@@ -1,11 +1,37 @@
 .CampaignCard__card {
-    height: 24rem;
-    width: 26.5rem;
+    width: 49%;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.CampaignCard__card__img {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.CampaignCard__header {
+    font-size:0.875rem;
+    display: flex;
+    align-items: center;
     margin-bottom: 0.5rem;
+}
+
+.CampaignCard__header__category {
+    border-radius: 1rem;
+    margin-left: 0.5rem;
+    background-color: #6B4EFF !important;
+    padding: 0.35rem 1rem;
 }
 
 .CampaignCard__card_text {
     font-size: 14px;
+}
+
+.CampaignCard__hashtagWrapper {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .CampaignCard__card_badge {
@@ -14,17 +40,25 @@
     padding: 0.3rem 1.2rem;
     background-color: #E7E7FF !important;
     border: 1px solid #CED4DA;
-    color: gray;
-    margin-right: 0.7rem;
+    color: #6F6F6F;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .CampaignCard__body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .CampaignCard__body_title {
     font-weight: 600;
     font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.CampaignCard__dueDate {
+    font-size: 14px;
+    color: #68717A;
+    margin-top: 0.5rem;
 }
