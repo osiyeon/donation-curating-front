@@ -33,8 +33,6 @@ function MainBody({ campaignList, organizationList }) {
     }
   };
 
-  console.log({ campaignList, organizationList });
-
   return (
     <BodyFrame>
       <div className={style.MainBody}>

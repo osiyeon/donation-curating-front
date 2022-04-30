@@ -16,6 +16,8 @@
 
 .CampaignBody__title {
     margin-top: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .CampaignBody__nav {

@@ -24,7 +24,7 @@ export default function Introduction() {
         </p>
         <div className={styles.introduction__body}>
           <div className={styles.introduction__body_wrapper}>
-            <img src={sharingImg.src} height="362px" />
+            <img src={sharingImg.src} height="300px" />
             <div className={styles.introduction__body_title}>나누기(÷)란?</div>
             <div className={styles.introduction__body_content}>
               기부금을 지불하거나 경제적으로 후원하는 형태의 기부 활동입니다.
@@ -32,7 +32,7 @@ export default function Introduction() {
             </div>
           </div>
           <div className={styles.introduction__body_wrapper}>
-            <img src={givingImg.src} height="362px" />
+            <img src={givingImg.src} height="300px" />
             <div className={styles.introduction__body_title}>곱하기(×)란?</div>
             <div className={styles.introduction__body_content}>
               자원 봉사, 재능 기부 등 직접 참여할 수 있는 기부 활동으로서

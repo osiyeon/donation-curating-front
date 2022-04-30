@@ -1,6 +1,50 @@
+.SearchBody__breadcrumb {
+    display: flex;
+    width: 100%;
+    font-size:0.875rem;
+    
+}
+.SearchBody__breadcrumb > nav > ol  {
+    align-items: center;
+}
+
+.SearchBody__breadcrumb > nav > ol > li > a {
+    text-decoration: none;
+    color:inherit;
+    font-weight: 500;
+    font-size: 1rem;
+}
 .SearchBody {
     margin-top: 2rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 1;
+
+}
+
+.SearchBody__none {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    color: gray;
+    margin: 1rem;
+}
+.SearchBody__title {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+.SearchBody__label {
+    height: 2rem;
+    background-color: #DEE2E6;
+    width: 100%;
+    top: -1.5rem;
+    position: relative;
+}
+.SearchBody__header {
+    font-size:1.3rem;
+    font-weight: 600;
 }
 
 .SearchBody__campaigns {
@@ -9,4 +53,13 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 0;
+}
+.SearchBody__cardWrapper {
+    width: 100%;
+}
+.SearchBody__divider {
+    height: 1px;
+    background-color: #DEE2E6;
+    width: 100%;
+    margin: 0.5rem 0;
 }

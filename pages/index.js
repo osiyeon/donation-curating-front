@@ -7,6 +7,8 @@ import MainBody from "../components/MainBody/MainBody";
 import { getCampaigns } from "../actions";
 import banner from "../public/images/banner.svg";
 
+import style from "./style.module.css";
+
 function Home() {
   const [campaignList, setCampaignList] = useState([]);
   const [organizationList, setOrganizationList] = useState([]);

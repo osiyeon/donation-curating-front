@@ -15,13 +15,10 @@ import OrganizationDetailModal from "../OrganizationDetailModal/OrganizationDeta
 import style from "./OrganizationCard.module.css";
 
 function OrganizationCard({ organization, campaignList }) {
-  console.log({ organization, campaignList });
   const { name, description, id, hashtags } = organization;
 
   const [isOpen, setIsOpen] = useState(false);
   const filteredCampaignList = campaignList.filter(list => list.orgId === id);
-
-  console.log({ filteredCampaignList });
 
   const onClickHandler = () => {
     setIsOpen(!isOpen);

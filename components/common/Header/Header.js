@@ -22,7 +22,6 @@ function Header({ searchBox }) {
 
   const handleInputChange = e => {
     setSearchValue(e.target.value);
-    console.log({ searchValue });
   };
 
   const handleKeyPress = e => {
@@ -91,13 +90,11 @@ function Header({ searchBox }) {
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
           />
-          <Button
-            size="sm"
-            className={styles.Header__search_button}
+          <img
+            src="/images/searchIcon.svg"
+            className={styles.Header__search__searchIcon}
             onClick={handleClick}
-          >
-            검색
-          </Button>
+          />
         </FormGroup>
       )}
     </Navbar>

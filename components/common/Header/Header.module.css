@@ -21,10 +21,13 @@
     display: flex;
     align-items: center;
     margin-bottom: 0 !important;
-    width: 16rem;
+    width: 17rem;
 }
 .Header__search_input {
     font-size: 14px;
+    border-radius: 2.5rem;
+    height: 2.4rem;
+    padding: 0 1.7rem 0 1.5rem;
 }
 .Header__search_button {
     font-size: 14px;
@@ -33,6 +36,12 @@
     width: 3.5rem;
     height: 36.5px;
     margin-left: 0.1rem;
+}
+
+.Header__search__searchIcon {
+    width: 1.7rem;
+    position: absolute;
+    right: 1.7rem;
 }
 
 .Header__search_button:hover {

@@ -14,7 +14,6 @@ import {
 import style from "./CampainCard.module.css";
 
 export default function CampainCard({ campaign = {} }) {
-  console.log({ campaign });
   const {
     id,
     title,

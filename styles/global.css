@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -19,9 +19,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
+} */
 
-img {
-  max-width: 100%;
-  display: block;
-}
+
