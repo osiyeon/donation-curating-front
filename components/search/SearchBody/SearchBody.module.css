@@ -36,10 +36,10 @@
     align-items: center;
 }
 .SearchBody__label {
-    height: 2rem;
-    background-color: #DEE2E6;
+    height: 3rem;
+    background-color: #E7E7FF;
     width: 100%;
-    top: -1.5rem;
+    top: -2.9rem;
     position: relative;
 }
 .SearchBody__header {

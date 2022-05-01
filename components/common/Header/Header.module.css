@@ -42,6 +42,7 @@
     width: 1.7rem;
     position: absolute;
     right: 1.7rem;
+    cursor: pointer;
 }
 
 .Header__search_button:hover {

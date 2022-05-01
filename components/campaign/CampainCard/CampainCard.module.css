@@ -8,6 +8,7 @@
 .CampaignCard__card__img {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
+    height: 17rem;
 }
 
 .CampaignCard__header {
@@ -15,6 +16,8 @@
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
+    /* flex-direction: column;
+    align-items: flex-start; */
 }
 
 .CampaignCard__header__category {
@@ -22,6 +25,9 @@
     margin-left: 0.5rem;
     background-color: #6B4EFF !important;
     padding: 0.35rem 1rem;
+}
+.CampaignCard__header__title {
+    display: flex;
 }
 
 .CampaignCard__card_text {
@@ -48,7 +54,9 @@
 .CampaignCard__body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
+    justify-content: space-between;
+    /* height: 20rem; */
 }
 
 .CampaignCard__body_title {

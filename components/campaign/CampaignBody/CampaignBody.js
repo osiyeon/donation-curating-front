@@ -17,6 +17,7 @@ import HashTagWrapper from "../../common/HashTagWrapper";
 import classNames from "classnames";
 import styles from "./CampaignBody.module.css";
 import CampaignCard from "../CampainCard";
+import style from "../../search/SearchBody/SearchBody.module.css";
 
 function CampaignBody() {
   const [activeTab, setActiveTab] = useState("div");
@@ -47,6 +48,15 @@ function CampaignBody() {
 
   return (
     <BodyFrame>
+      <div className={style.SearchBody__breadcrumb}>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <a href="/">Home</a>
+          </BreadcrumbItem>
+          <BreadcrumbItem>캠페인</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+
       <h3 className={styles.CampaignBody__title}>캠페인</h3>
       <HashTagWrapper hashTagList={campaignHashTag} />
       <Nav fill className={styles.CampaignBody__nav}>
@@ -93,7 +103,9 @@ function CampaignBody() {
         <TabPane tabId="mul">
           <div className={styles.CampaignBody__body}>
             {sharingCampainList.map(list => {
-              return <CampaignCard campaign={list} />;
+              return (
+                <CampaignCard campaign={list} campaignList={campaignList} />
+              );
             })}
           </div>
         </TabPane>

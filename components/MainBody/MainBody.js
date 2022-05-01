@@ -69,8 +69,8 @@ function MainBody({ campaignList, organizationList }) {
         </div>
         <div className={style.MainBody__title_divider}></div>
         <div className={style.MainBody__campaigns}>
-          <CampainCard campaign={campaignList[0]} />
-          <CampainCard campaign={campaignList[1]} />
+          <CampainCard campaign={campaignList[0]} campaignList={campaignList} />
+          <CampainCard campaign={campaignList[1]} campaignList={campaignList} />
         </div>
       </div>
     </BodyFrame>

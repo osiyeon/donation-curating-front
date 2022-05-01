@@ -16,7 +16,7 @@
 .introduction__intro {
     background-color: #F8F9FA;
     color: #5538EE;
-    height: 195px;
+    height: 180px;
     width: 100%;
     text-align: center;
     padding: 3rem 4rem;
@@ -26,10 +26,16 @@
 
 .introduction__body {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    /* width: 100%; */
+    justify-content: center;
 }
 .introduction__body_wrapper {
     margin: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
 }
 .introduction__body_title {
     height: 2rem;
