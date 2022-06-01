@@ -25,7 +25,7 @@ function CampaignForm() {
             </FormGroup>
             <FormGroup check>
               <Label check>
-                <Input type="radio" name="radio2" /> 곱하기
+                <Input type="radio" name="giving" /> 곱하기
               </Label>
             </FormGroup>
           </Col>
@@ -106,7 +106,7 @@ function CampaignForm() {
         </FormGroup>
         <FormGroup row>
           <Label for="exampleFile" sm={2}>
-            File
+            이미지
           </Label>
           <Col sm={10}>
             <Input type="file" name="file" id="exampleFile" />

@@ -1,41 +1,48 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+  useRecoilValueLoadable
+} from "recoil";
+
 import { Card, CardImg, CardImgOverlay, CardText } from "reactstrap";
 import Header from "../components/common/Header";
 import MainBody from "../components/MainBody/MainBody";
-import { getCampaigns } from "../actions";
 import banner from "../public/images/banner.svg";
+import {
+  getCampaignListSelector,
+  getOrganizationListSelector,
+  campaignListState
+} from "../states";
 
 import style from "./style.module.css";
 
 function Home() {
-  const [campaignList, setCampaignList] = useState([]);
-  const [organizationList, setOrganizationList] = useState([]);
-  const dispatch = useDispatch();
-  useEffect(async () => {
-    // dispatch(getCampaigns());
-    const { data: campaigns } = await axios.get(`/api/v1/campaigns`);
-    setCampaignList(campaigns);
-
-    const { data: organizations } = await axios.get(`/api/v1/organizations`);
-    setOrganizationList(organizations);
-  }, []);
+  const campaignListLoadable = useRecoilValueLoadable(getCampaignListSelector);
+  const organizationListLoadable = useRecoilValueLoadable(
+    getOrganizationListSelector
+  );
 
   return (
-    campaignList.length !== 0 &&
-    organizationList.length !== 0 && (
-      <>
-        <Header />
-        <Card inverse>
-          <CardImg alt="Card image cap" src={banner.src} />
-        </Card>
-        <MainBody
-          campaignList={campaignList}
-          organizationList={organizationList}
-        />
-      </>
-    )
+    <>
+      <Header />
+      <Card inverse>
+        <CardImg alt="Card image cap" src={banner.src} />
+      </Card>
+      {campaignListLoadable.state === "hasValue" &&
+        organizationListLoadable.state === "hasValue" && (
+          <MainBody
+            campaignList={campaignListLoadable.contents}
+            organizationList={organizationListLoadable.contents}
+          />
+        )}
+      {(campaignListLoadable.state === "loading" ||
+        organizationListLoadable.state === "loading") && <div>Loading...</div>}
+    </>
   );
 }
+
 export default Home;

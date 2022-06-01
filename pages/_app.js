@@ -1,14 +1,14 @@
+import { RecoilRoot } from "recoil";
+
 import "../styles/global.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Provider } from "react-redux";
-import { useStore } from "../store";
 
-export default function App({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState);
-
+function App({ Component, pageProps }) {
   return (
-    <Provider store={store}>
+    <RecoilRoot>
       <Component {...pageProps} />
-    </Provider>
+    </RecoilRoot>
   );
 }
+
+export default App;

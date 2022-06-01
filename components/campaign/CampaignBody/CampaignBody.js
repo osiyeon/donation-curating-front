@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+  useRecoilValueLoadable
+} from "recoil";
+
+import {
   NavLink,
   Nav,
   NavItem,
@@ -18,11 +27,16 @@ import classNames from "classnames";
 import styles from "./CampaignBody.module.css";
 import CampaignCard from "../CampainCard";
 import style from "../../search/SearchBody/SearchBody.module.css";
+import { campaignListState } from "../../../states";
 
 function CampaignBody() {
   const [activeTab, setActiveTab] = useState("div");
   const [campaignHashTag, setCampaignHashTag] = useState([]);
   const [campaignList, setCampaignList] = useState([]);
+  // const [campaignList, setCampaignList] = useRecoilState(campaignListState);
+  // const campaignListLoadable = useRecoilValueLoadable(getCampaignListSelector);
+
+  console.log({ campaignList });
 
   useEffect(async () => {
     const { data: campaigns } = await axios.get("/api/v1/campaigns/");

@@ -27,7 +27,8 @@ export default function CampainCard({ campaign = {}, campaignList = [] }) {
     category,
     campLink,
     startDate,
-    closingDate
+    closingDate,
+    campThumbnail
   } = campaign;
   const categoryTag = category === "GIVING" ? "나누기" : "곱하기";
 
@@ -57,7 +58,7 @@ export default function CampainCard({ campaign = {}, campaignList = [] }) {
       <Card className={style.CampaignCard__card}>
         <img
           width="100%"
-          src={`/images/campaign/${id}.png`}
+          src={campThumbnail}
           alt={id}
           className={style.CampaignCard__card__img}
           onClick={onClickHandler}

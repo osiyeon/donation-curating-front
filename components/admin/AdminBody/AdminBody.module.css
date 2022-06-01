@@ -1,0 +1,11 @@
+.AdminBody__header {
+    display: flex;
+}
+
+.AdminBody{
+    width: 100%;
+}
+
+.AdminBody > div {
+    margin-top: 3.5rem;
+}

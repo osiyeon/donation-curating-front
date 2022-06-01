@@ -13,7 +13,6 @@ import Router from "next/router";
 
 function MainBody({ campaignList, organizationList }) {
   const [hashTagList, setHashTagList] = useState([]);
-  // const campaignList = useSelector(state => state.campaignReducer);
 
   useEffect(async () => {
     const { data: allHashTags } = await axios.get(`/api/v1/hashtags`);
