@@ -15,7 +15,7 @@ import OrganizationDetailModal from "../OrganizationDetailModal/OrganizationDeta
 import style from "./OrganizationCard.module.css";
 
 function OrganizationCard({ organization, campaignList }) {
-  const { name, description, id, hashtags } = organization;
+  const { name, description, id, hashtags, orgThumbnail } = organization;
 
   const [isOpen, setIsOpen] = useState(false);
   const filteredCampaignList = campaignList.filter(list => list.orgId === id);
@@ -30,7 +30,7 @@ function OrganizationCard({ organization, campaignList }) {
         <Row>
           <Col md="4">
             <CardImg
-              src={`/images/organization/${id}.png`}
+              src={orgThumbnail}
               alt={id}
               className={style.OrganizationCard__card__img}
             />

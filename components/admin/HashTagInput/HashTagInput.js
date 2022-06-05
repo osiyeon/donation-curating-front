@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { debounce } from "lodash";
-import { GrFormClose } from "react-icons/gr";
+import { GrFormClose, GrFormRefresh } from "react-icons/gr";
 
 import {
   FormGroup,
@@ -13,7 +13,8 @@ import {
   DropdownToggle,
   DropdownItem,
   Badge,
-  Row
+  Row,
+  Button
 } from "reactstrap";
 
 import style from "./HashTagInput.module.css";
@@ -23,10 +24,25 @@ function HashTagInput({ hashTagList, setHashTags }) {
   const [isOpen, setOpen] = useState(false);
   const [hashTag, setHashTag] = useState("");
   const [dropdownItem, setDropdownItem] = useState([]);
+  const [allHashTag, setAllHashTag] = useState(hashTagList);
+
+  const checkAlreadyExists = id => {
+    selectedTag.forEach(tag => {
+      if (tag.id === id) {
+        console.log("exist");
+        return true;
+      } else {
+        console.log("false");
+        return false;
+      }
+    });
+  };
 
   const searchHashTag = debounce(value => {
     const filteredTags = value
-      ? hashTagList.filter(item => item.tagName.includes(value))
+      ? allHashTag.filter(
+          item => item.tagName.includes(value) && !checkAlreadyExists(item.id)
+        )
       : [];
     setDropdownItem(filteredTags);
   }, 500);
@@ -60,6 +76,15 @@ function HashTagInput({ hashTagList, setHashTags }) {
       setHashTags(copiedSelectedTag);
     }
   };
+
+  const onClickRefreshButton = e => {
+    axios.get(`/api/v1/hashtags`).then(res => {
+      const { data } = res;
+      setAllHashTag(data);
+      console.log({ data });
+    });
+  };
+
   return (
     <div className={style.HashTagInput}>
       <FormGroup row>
@@ -71,16 +96,21 @@ function HashTagInput({ hashTagList, setHashTags }) {
             <DropdownToggle
               tag="span"
               data-toggle="dropdown"
-              aria-expanded={hashTagList?.length !== 0}
+              aria-expanded={allHashTag?.length !== 0}
             >
-              <Input
-                type="text"
-                name="hashtag"
-                id="organizationTag"
-                placeholder="해쉬태그 입력"
-                onChange={onChangeHandler}
-                value={hashTag}
-              />
+              <div className={style.HashTagInput__input}>
+                <Input
+                  type="text"
+                  name="hashtag"
+                  id="organizationTag"
+                  placeholder="해쉬태그 입력"
+                  onChange={onChangeHandler}
+                  value={hashTag}
+                />
+                <Button outline onClick={onClickRefreshButton}>
+                  <GrFormRefresh className={style.HashTagInput__refresh} />
+                </Button>
+              </div>
             </DropdownToggle>
 
             <DropdownMenu>

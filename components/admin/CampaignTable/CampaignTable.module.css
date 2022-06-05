@@ -1,4 +1,21 @@
 .CampaignTable {
+    width: calc(100vw - 10rem);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.CampaignTable__table {
     width: 40rem;
     font-size: 14px;
+}
+
+.CampaignTable > thead > tr > th {
+    width: 20%;
+}
+
+.CampaignTable__content {
+    width: 20rem;
+}
+
+.CampaignTable__img {
+    width: 10rem;
 }

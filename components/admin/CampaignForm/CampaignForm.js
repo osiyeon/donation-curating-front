@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Form,
   FormGroup,
@@ -11,6 +13,20 @@ import {
 import style from "./CampaignForm.module.css";
 
 function CampaignForm() {
+  const [category, setCategory] = useState("SHARING");
+
+  const onClickCategory = e => {
+    const value = e.target.value;
+
+    if (value === "sharing") {
+      setCategory("GIVING");
+    } else {
+      setCategory("SHARING");
+    }
+
+    console.log({ value });
+    console.log({ category });
+  };
   return (
     <div className={style.CampaignForm}>
       <h3>캠페인 등록</h3>
@@ -18,14 +34,26 @@ function CampaignForm() {
         <FormGroup tag="fieldset" row>
           <legend className="col-form-label col-sm-2">카테고리</legend>
           <Col sm={10}>
-            <FormGroup check>
-              <Label check>
-                <Input type="radio" name="sharing" /> 나누기
+            <FormGroup check={category === "SHARING"}>
+              <Label>
+                <Input
+                  type="radio"
+                  name="category"
+                  value="sharing"
+                  onClick={onClickCategory}
+                />
+                나누기
               </Label>
             </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input type="radio" name="giving" /> 곱하기
+            <FormGroup check={category === "GIVING"}>
+              <Label>
+                <Input
+                  type="radio"
+                  name="category"
+                  value="giving"
+                  onClick={onClickCategory}
+                />
+                곱하기
               </Label>
             </FormGroup>
           </Col>

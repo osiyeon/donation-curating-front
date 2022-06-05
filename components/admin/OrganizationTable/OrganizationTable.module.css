@@ -1,4 +1,13 @@
 .OrganizationTable {
+    width: calc(100vw - 10rem);    
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.OrganizationTable__table {
 
     font-size: 14px;
+}
+
+.OrganizationTable__img {
+    width: 10rem;
 }

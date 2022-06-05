@@ -48,10 +48,10 @@ function AdminBody() {
           <CampaignForm hashTagList={hashTagList} />
         </div>
       ) : (
-        <div>
+        <>
           <OrganizationTable />
           <CampaignTable />
-        </div>
+        </>
       )}
     </BodyFrame>
   );

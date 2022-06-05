@@ -17,26 +17,50 @@ import style from "./OrganizationForm.module.css";
 function OrganizationForm({ hashTagList }) {
   const [organizationInfo, setOrganizationInfo] = useState({});
   const [selectedHashTag, setSelectedHashTag] = useState([]);
+  const [imageFileInfo, setImageFileInfo] = useState([]);
 
   const onChangeHandler = e => {
-    setOrganizationInfo({
-      ...organizationInfo,
-      [e.target.id]: e.target.value
-    });
+    if (e.target.id === "file") {
+      setImageFileInfo(e.target.files);
+    } else {
+      setOrganizationInfo({
+        ...organizationInfo,
+        [e.target.id]: e.target.value
+      });
+    }
   };
 
   const saveOrganizationHandler = () => {
     const saveData = { ...organizationInfo, tags: selectedHashTag };
 
+    const formData = new FormData();
+
+    formData.append(
+      "orgSaveRequestDto",
+      new Blob([JSON.stringify(organizationInfo)], { type: "application/json" })
+    );
+    formData.append("file", imageFileInfo[0]);
+    formData.append(
+      "tags",
+      new Blob([JSON.stringify(selectedHashTag)], { type: "application/json" })
+    );
+
     axios
-      .post("/api/v1/organizations", saveData)
+      .post("/api/v1/organizations", formData)
       .then(res => {
-        console.log({ res });
+        //확인 필요 - 초기화 안됨
+        Promise.all(
+          setOrganizationInfo({}),
+          setSelectedHashTag([]),
+          setImageFileInfo([])
+        );
+        alert("저장되었습니다.");
       })
       .catch(err => {
         console.log({ err });
       });
   };
+  console.log({ organizationInfo, selectedHashTag, imageFileInfo });
 
   return (
     <div className={style.OrganizationForm}>
@@ -52,6 +76,7 @@ function OrganizationForm({ hashTagList }) {
               name="name"
               id="name"
               placeholder="기부단체명을 입력해주세요"
+              value={organizationInfo.name}
               onChange={onChangeHandler}
             />
           </Col>
@@ -66,6 +91,7 @@ function OrganizationForm({ hashTagList }) {
               name="text"
               id="description"
               placeholder="기부단체소개를 입력해주세요"
+              value={organizationInfo.description}
               onChange={onChangeHandler}
             />
           </Col>
@@ -84,6 +110,7 @@ function OrganizationForm({ hashTagList }) {
               name="link"
               id="orgLink"
               placeholder="기부단체 링크를 입력해주세요"
+              value={organizationInfo.orgLink}
               onChange={onChangeHandler}
             />
           </Col>

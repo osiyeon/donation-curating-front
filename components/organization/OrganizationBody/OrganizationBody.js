@@ -16,6 +16,7 @@ function OrganizationBody() {
 
   useEffect(async () => {
     const { data: organizations } = await axios.get("/api/v1/organizations");
+    console.log({ organizationList });
     setOrganizationList(organizations);
     const { data: hashTagList } = await axios.get(
       "/api/v1/hashtags/organization"
