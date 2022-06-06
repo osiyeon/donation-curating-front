@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { debounce } from "lodash";
 import { GrFormClose, GrFormRefresh } from "react-icons/gr";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   FormGroup,
@@ -17,14 +17,19 @@ import {
   Button
 } from "reactstrap";
 
+import { fetchHashTagList } from "../../../states/hashtag";
+
 import style from "./HashTagInput.module.css";
 
-function HashTagInput({ hashTagList, setHashTags }) {
+function HashTagInput({ setHashTags }) {
+  const dispatch = useDispatch();
+
   const [selectedTag, setSelectedTag] = useState([]);
   const [isOpen, setOpen] = useState(false);
   const [hashTag, setHashTag] = useState("");
   const [dropdownItem, setDropdownItem] = useState([]);
-  const [allHashTag, setAllHashTag] = useState(hashTagList);
+
+  const hashTagList = useSelector(state => state.hashtag.hashtagList);
 
   const checkAlreadyExists = id => {
     selectedTag.forEach(tag => {
@@ -40,7 +45,7 @@ function HashTagInput({ hashTagList, setHashTags }) {
 
   const searchHashTag = debounce(value => {
     const filteredTags = value
-      ? allHashTag.filter(
+      ? hashTagList.filter(
           item => item.tagName.includes(value) && !checkAlreadyExists(item.id)
         )
       : [];
@@ -77,12 +82,8 @@ function HashTagInput({ hashTagList, setHashTags }) {
     }
   };
 
-  const onClickRefreshButton = e => {
-    axios.get(`/api/v1/hashtags`).then(res => {
-      const { data } = res;
-      setAllHashTag(data);
-      console.log({ data });
-    });
+  const onClickRefreshButton = async () => {
+    await dispatch(fetchHashTagList());
   };
 
   return (
@@ -96,7 +97,7 @@ function HashTagInput({ hashTagList, setHashTags }) {
             <DropdownToggle
               tag="span"
               data-toggle="dropdown"
-              aria-expanded={allHashTag?.length !== 0}
+              aria-expanded={hashTagList?.length !== 0}
             >
               <div className={style.HashTagInput__input}>
                 <Input

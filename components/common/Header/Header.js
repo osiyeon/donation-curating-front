@@ -1,18 +1,16 @@
 import { useState } from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   Nav,
   NavItem,
-  NavLink,
   Collapse,
   FormGroup,
-  Input,
-  Button
+  Input
 } from "reactstrap";
 import Image from "next/image";
 import Router from "next/router";
+import Link from "next/link";
 
 import styles from "./Header.module.css";
 
@@ -28,7 +26,8 @@ function Header({ searchBox }) {
     if (e.key === "Enter") {
       Router.push({
         pathname: "/search",
-        query: { value: searchValue }
+        query: { value: searchValue },
+        shallow: true
       });
     }
   };
@@ -45,37 +44,38 @@ function Header({ searchBox }) {
 
   return (
     <Navbar expand="md" dark className={styles.Header}>
-      <NavbarBrand href="/">
+      <Link href="/">
         <Image
           priority
           src="/images/나누기 곱하기-logos_white.png"
           height={45}
           width={95}
+          className={styles.Header__logoImage}
         />
-      </NavbarBrand>
+      </Link>
       <NavbarToggler onClick={toggle} />
       <Collapse navbar isOpen={isOpen}>
         <Nav navbar>
           <NavItem className={styles.Header__item}>
-            <NavLink href="/campaign" className={styles.Header__item_content}>
-              캠페인
-            </NavLink>
-          </NavItem>
-          <NavItem className={styles.Header__item}>
-            <NavLink
-              href="/organization"
+            <Link
+              href={{ pathname: "/campaign", shallow: true }}
               className={styles.Header__item_content}
             >
-              기부단체
-            </NavLink>
+              캠페인
+            </Link>
           </NavItem>
           <NavItem className={styles.Header__item}>
-            <NavLink
+            <Link href="/organization" className={styles.Header__item_content}>
+              기부단체
+            </Link>
+          </NavItem>
+          <NavItem className={styles.Header__item}>
+            <Link
               href="/intro/introduction"
               className={styles.Header__item_content}
             >
               소개
-            </NavLink>
+            </Link>
           </NavItem>
         </Nav>
       </Collapse>

@@ -1,6 +1,6 @@
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-import CampaignBody from "../../components/campaign/CampaignBody";
+import CampaignBody from "../../containers/campaign/CampaignBody";
 import Header from "../../components/common/Header";
 
 function Campaign() {

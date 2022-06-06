@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import axios from "axios";
 import {
   Form,
   FormGroup,
@@ -10,23 +10,86 @@ import {
   Button
 } from "reactstrap";
 
+import HashTagInput from "../../../containers/admin/HashTagInput";
+import OrganizationDropdownInput from "../../../containers/admin/OrganizationDropdownInput";
+
 import style from "./CampaignForm.module.css";
 
 function CampaignForm() {
+  const [campaignInfo, setCampaignInfo] = useState({});
   const [category, setCategory] = useState("SHARING");
+  const [selectedHashTag, setSelectedHashTag] = useState([]);
+  const [imageFileInfo, setImageFileInfo] = useState([]);
+  const [selectedOrg, setSelectedOrg] = useState({});
+
+  const onChangeHandler = e => {
+    if (e.target.id === "file") {
+      setImageFileInfo(e.target.files);
+    } else {
+      setCampaignInfo({
+        ...campaignInfo,
+        [e.target.id]: e.target.value
+      });
+    }
+  };
 
   const onClickCategory = e => {
-    const value = e.target.value;
+    const { id, value } = e.target;
 
     if (value === "sharing") {
-      setCategory("GIVING");
-    } else {
       setCategory("SHARING");
+      setCampaignInfo({
+        ...campaignInfo,
+        [id]: "SHARING"
+      });
+    } else {
+      setCategory("GIVING");
+      setCampaignInfo({
+        ...campaignInfo,
+        [id]: "GIVING"
+      });
     }
-
-    console.log({ value });
-    console.log({ category });
   };
+
+  const selectOrganization = ({ key, orgId }) => {
+    setCampaignInfo({
+      ...campaignInfo,
+      [key]: { ["id"]: orgId }
+    });
+  };
+
+  const saveCampaignHandler = () => {
+    const saveData = { ...campaignInfo, tags: selectedHashTag };
+
+    const formData = new FormData();
+
+    formData.append(
+      "campSaveRequestDto",
+      new Blob([JSON.stringify(campaignInfo)], { type: "application/json" })
+    );
+    formData.append("file", imageFileInfo[0]);
+    formData.append(
+      "tags",
+      new Blob([JSON.stringify(selectedHashTag)], { type: "application/json" })
+    );
+
+    axios
+      .post("/api/v1/campaigns", formData)
+      .then(res => {
+        //확인 필요 - 초기화 안됨
+        // Promise.all(
+        //   setOrganizationInfo({}),
+        //   setSelectedHashTag([]),
+        //   setImageFileInfo([])
+        // );
+        alert("저장되었습니다.");
+      })
+      .catch(err => {
+        console.log({ err });
+      });
+  };
+  console.log({ campaignInfo });
+
   return (
     <div className={style.CampaignForm}>
       <h3>캠페인 등록</h3>
@@ -40,6 +103,7 @@ function CampaignForm() {
                   type="radio"
                   name="category"
                   value="sharing"
+                  id="category"
                   onClick={onClickCategory}
                 />
                 나누기
@@ -51,6 +115,7 @@ function CampaignForm() {
                   type="radio"
                   name="category"
                   value="giving"
+                  id="category"
                   onClick={onClickCategory}
                 />
                 곱하기
@@ -58,14 +123,7 @@ function CampaignForm() {
             </FormGroup>
           </Col>
         </FormGroup>
-        <FormGroup row>
-          <Label for="organizationSelect" sm={2}>
-            기부단체
-          </Label>
-          <Col sm={10}>
-            <Input type="select" name="select" id="organizationSelect" />
-          </Col>
-        </FormGroup>
+        <OrganizationDropdownInput selectOrganization={selectOrganization} />
         <FormGroup row>
           <Label for="organizationName" sm={2}>
             캠페인명
@@ -74,8 +132,10 @@ function CampaignForm() {
             <Input
               type="text"
               name="name"
-              id="campaignName"
+              id="title"
               placeholder="캠페인명을 입력해주세요"
+              value={campaignInfo.name}
+              onChange={onChangeHandler}
             />
           </Col>
         </FormGroup>
@@ -87,12 +147,13 @@ function CampaignForm() {
             <Input
               type="textarea"
               name="text"
-              id="organizationDesc"
+              id="content"
               placeholder="캠페인 내용을 입력해주세요"
+              value={campaignInfo.description}
+              onChange={onChangeHandler}
             />
           </Col>
         </FormGroup>
-
         <FormGroup row>
           <Label for="exampleDate" sm={2}>
             시작일
@@ -119,32 +180,25 @@ function CampaignForm() {
             />
           </Col>
         </FormGroup>
-        <FormGroup row>
-          <Label for="organizationName" sm={2}>
-            해쉬태그
-          </Label>
-          <Col sm={10}>
-            <Input
-              type="text"
-              name="hashtag"
-              id="organizationTag"
-              placeholder="해쉬태그 입력"
-            />
-          </Col>
-        </FormGroup>
+        <HashTagInput setHashTags={setSelectedHashTag} />
         <FormGroup row>
           <Label for="exampleFile" sm={2}>
             이미지
           </Label>
           <Col sm={10}>
-            <Input type="file" name="file" id="exampleFile" />
+            <Input
+              type="file"
+              name="file"
+              id="file"
+              onChange={onChangeHandler}
+            />
             <FormText color="muted">
               캠페인 썸네일 이미지 저장. jpg 형태로 통일
             </FormText>
           </Col>
         </FormGroup>
       </Form>
-      <Button>저장</Button>
+      <Button onClick={saveCampaignHandler}>저장</Button>
     </div>
   );
 }

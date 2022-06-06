@@ -1,16 +1,26 @@
 .Header {
     background-color: #8a2be2;
-    padding: 0.25rem 0 0 0.25rem;
-    
+}
+.Header__logoImage {
+    cursor: pointer;
 }
 
 .Header__item {
     font-size: 16px;
     margin-left: 3rem;
+
+}
+@media (max-width: 767px){
+    .Header__item {
+        margin-left: 0;
+        margin: 0.5rem 0;
+    
+    }
 }
 
-.Header__item_content {
-    color: white !important;
+.Header__item > a{
+    color: white;
+    text-decoration: none;
 }
 
 .Header__item_content:hover {

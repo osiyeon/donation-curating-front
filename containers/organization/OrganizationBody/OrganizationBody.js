@@ -1,30 +1,26 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 import axios from "axios";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-import BodyFrame from "../../common/BodyFrame";
-import OrganizationCard from "../OrganizationCard";
-import HashTagWrapper from "../../common/HashTagWrapper";
+import BodyFrame from "../../../components/common/BodyFrame";
+import OrganizationCard from "../../../components/organization/OrganizationCard";
+import HashTagWrapper from "../../../components/common/HashTagWrapper";
 
 import styles from "./OrganizationBody.module.css";
-import style from "../../search/SearchBody/SearchBody.module.css";
+import style from "../../../components/search/SearchBody/SearchBody.module.css";
 
 function OrganizationBody() {
-  const [orgHashTag, setOrgHashTag] = useState([]);
-  const [organizationList, setOrganizationList] = useState([]);
-  const [campaignList, setCampaignList] = useState([]);
+  const organizationList = useSelector(
+    state => state.organization.organizationList
+  );
 
-  useEffect(async () => {
-    const { data: organizations } = await axios.get("/api/v1/organizations");
-    console.log({ organizationList });
-    setOrganizationList(organizations);
-    const { data: hashTagList } = await axios.get(
-      "/api/v1/hashtags/organization"
-    );
-    setOrgHashTag(hashTagList);
-    const { data: campaigns } = await axios.get("/api/v1/campaigns");
-    setCampaignList(campaigns);
-  }, []);
+  const orgHashTag = useSelector(
+    state => state.hashtag.organizationHashtagList
+  );
+
+  const campaignList = useSelector(state => state.campaign.campaignList);
 
   return (
     <BodyFrame>

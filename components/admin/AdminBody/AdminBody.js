@@ -12,12 +12,7 @@ import OrganizationTable from "../OrganizationTable";
 import CampaignTable from "../CampaignTable";
 
 function AdminBody() {
-  const [hashTagList, setHashTagList] = useState([]);
   const [flag, setFlag] = useState("생성");
-  useEffect(async () => {
-    const { data } = await axios.get("/api/v1/hashtags");
-    setHashTagList(data);
-  }, []);
 
   const onClickButton = () => {
     if (flag === "생성") {
@@ -44,8 +39,8 @@ function AdminBody() {
       {flag === "생성" ? (
         <div className={style.AdminBody}>
           <HashTagForm />
-          <OrganizationForm hashTagList={hashTagList} />
-          <CampaignForm hashTagList={hashTagList} />
+          <OrganizationForm />
+          <CampaignForm />
         </div>
       ) : (
         <>

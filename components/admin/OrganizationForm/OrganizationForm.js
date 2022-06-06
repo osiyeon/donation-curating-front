@@ -10,11 +10,11 @@ import {
   Button
 } from "reactstrap";
 
-import HashTagInput from "../HashTagInput";
+import HashTagInput from "../../../containers/admin/HashTagInput";
 
 import style from "./OrganizationForm.module.css";
 
-function OrganizationForm({ hashTagList }) {
+function OrganizationForm() {
   const [organizationInfo, setOrganizationInfo] = useState({});
   const [selectedHashTag, setSelectedHashTag] = useState([]);
   const [imageFileInfo, setImageFileInfo] = useState([]);
@@ -49,11 +49,11 @@ function OrganizationForm({ hashTagList }) {
       .post("/api/v1/organizations", formData)
       .then(res => {
         //확인 필요 - 초기화 안됨
-        Promise.all(
-          setOrganizationInfo({}),
-          setSelectedHashTag([]),
-          setImageFileInfo([])
-        );
+        // Promise.all(
+        //   setOrganizationInfo({}),
+        //   setSelectedHashTag([]),
+        //   setImageFileInfo([])
+        // );
         alert("저장되었습니다.");
       })
       .catch(err => {
@@ -96,10 +96,7 @@ function OrganizationForm({ hashTagList }) {
             />
           </Col>
         </FormGroup>
-        <HashTagInput
-          hashTagList={hashTagList}
-          setHashTags={setSelectedHashTag}
-        />
+        <HashTagInput setHashTags={setSelectedHashTag} />
         <FormGroup row>
           <Label for="exampleText" sm={2}>
             기부단체 링크

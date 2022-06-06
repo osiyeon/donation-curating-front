@@ -1,14 +1,10 @@
-import { RecoilRoot } from "recoil";
+import { wrapper } from "../states/store";
 
 import "../styles/global.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App({ Component, pageProps }) {
-  return (
-    <RecoilRoot>
-      <Component {...pageProps} />
-    </RecoilRoot>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default App;
+export default wrapper.withRedux(App);

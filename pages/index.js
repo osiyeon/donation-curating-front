@@ -1,30 +1,29 @@
-import { useEffect, useState } from "react";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-  useRecoilValueLoadable
-} from "recoil";
-
+import { useDispatch } from "react-redux";
 import { Card, CardImg, CardImgOverlay, CardText } from "reactstrap";
 import Header from "../components/common/Header";
-import MainBody from "../components/MainBody/MainBody";
+import MainBody from "../containers/MainBody/MainBody";
 import banner from "../public/images/banner.svg";
+
+import { fetchCampaignList } from "../states/campaign";
+import { fetchOrganizationList } from "../states/organization";
 import {
-  getCampaignListSelector,
-  getOrganizationListSelector,
-  campaignListState
-} from "../states";
+  fetchHashTagList,
+  fetchCampaignHashTagList,
+  fetchOrganizationHashTagList
+} from "../states/hashtag";
 
 import style from "./style.module.css";
 
 function Home() {
-  const campaignListLoadable = useRecoilValueLoadable(getCampaignListSelector);
-  const organizationListLoadable = useRecoilValueLoadable(
-    getOrganizationListSelector
-  );
+  const dispatch = useDispatch();
+
+  Promise.all([
+    dispatch(fetchCampaignList()),
+    dispatch(fetchOrganizationList()),
+    dispatch(fetchHashTagList()),
+    dispatch(fetchCampaignHashTagList()),
+    dispatch(fetchOrganizationHashTagList())
+  ]);
 
   return (
     <>
@@ -32,15 +31,7 @@ function Home() {
       <Card inverse>
         <CardImg alt="Card image cap" src={banner.src} />
       </Card>
-      {campaignListLoadable.state === "hasValue" &&
-        organizationListLoadable.state === "hasValue" && (
-          <MainBody
-            campaignList={campaignListLoadable.contents}
-            organizationList={organizationListLoadable.contents}
-          />
-        )}
-      {(campaignListLoadable.state === "loading" ||
-        organizationListLoadable.state === "loading") && <div>Loading...</div>}
+      <MainBody />
     </>
   );
 }
