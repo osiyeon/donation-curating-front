@@ -52,7 +52,7 @@ function CampaignTable() {
                 <td>{item.category === "GIVING" ? "곱하기" : "나누기"}</td>
                 <td>{item.campLink}</td>
                 <td>
-                  {item.startingDate}~{item.closingDate}
+                  {item.startDate}~{item.closingDate}
                 </td>
                 <td>{item.orgName}</td>
                 <td>

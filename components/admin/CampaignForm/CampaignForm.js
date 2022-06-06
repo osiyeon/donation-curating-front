@@ -14,13 +14,13 @@ import HashTagInput from "../../../containers/admin/HashTagInput";
 import OrganizationDropdownInput from "../../../containers/admin/OrganizationDropdownInput";
 
 import style from "./CampaignForm.module.css";
+import CampaignDateInputGroup from "../CampaignDateInputGroup/CampaignDateInputGroup";
 
 function CampaignForm() {
   const [campaignInfo, setCampaignInfo] = useState({});
   const [category, setCategory] = useState("SHARING");
   const [selectedHashTag, setSelectedHashTag] = useState([]);
   const [imageFileInfo, setImageFileInfo] = useState([]);
-  const [selectedOrg, setSelectedOrg] = useState({});
 
   const onChangeHandler = e => {
     if (e.target.id === "file") {
@@ -56,6 +56,11 @@ function CampaignForm() {
       ...campaignInfo,
       [key]: { ["id"]: orgId }
     });
+  };
+
+  const selectDateInfo = e => {
+    const { value } = e.target;
+    console.log({ value });
   };
 
   const saveCampaignHandler = () => {
@@ -154,32 +159,7 @@ function CampaignForm() {
             />
           </Col>
         </FormGroup>
-        <FormGroup row>
-          <Label for="exampleDate" sm={2}>
-            시작일
-          </Label>
-          <Col sm={10}>
-            <Input
-              type="date"
-              name="startDate"
-              id="startDate"
-              placeholder="date placeholder"
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label for="exampleDate" sm={2}>
-            종료일
-          </Label>
-          <Col sm={10}>
-            <Input
-              type="date"
-              name="closingDate"
-              id="closingDate"
-              placeholder="date placeholder"
-            />
-          </Col>
-        </FormGroup>
+        <CampaignDateInputGroup setCampaignInfo={onChangeHandler} />
         <HashTagInput setHashTags={setSelectedHashTag} />
         <FormGroup row>
           <Label for="exampleFile" sm={2}>

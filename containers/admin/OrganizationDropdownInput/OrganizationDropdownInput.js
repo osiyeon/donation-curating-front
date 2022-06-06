@@ -13,10 +13,10 @@ function OrganizationDropdownInput({ selectOrganization }) {
 
   const onChangeHandler = e => {
     const { value, id } = e.target;
-    console.log({ value });
+    const idx = organizationList.findIndex(item => item.id === parseInt(value));
 
-    selectOrganization({ key: id, orgId: value.id });
-    setSelectedOrganization(value);
+    selectOrganization({ key: id, orgId: organizationList[idx].id });
+    setSelectedOrganization(organizationList[idx]);
   };
   return (
     <FormGroup row>
@@ -32,9 +32,7 @@ function OrganizationDropdownInput({ selectOrganization }) {
           onChange={onChangeHandler}
         >
           {[selectedOrganization, ...organizationList].map(item => (
-            <option value={{ ["id"]: item.id, ["name"]: item.name }}>
-              {item.name}
-            </option>
+            <option value={item.id}>{item.name}</option>
           ))}
         </Input>
       </Col>
