@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Button } from "reactstrap";
 
 import BodyFrame from "../../common/BodyFrame";
-import OrganizationForm from "../OrganizationForm";
+import OrganizationForm from "../../../containers/admin/OrganizationForm";
 import HashTagForm from "../HashTagForm";
-
+import CampaignForm from "../../../containers/admin/CampaignForm";
+import OrganizationTable from "../../../containers/admin/OrganizationTable";
+import CampaignTable from "../../../containers/admin/CampaignTable";
 import style from "./AdminBody.module.css";
-import CampaignForm from "../CampaignForm/CampaignForm";
-import OrganizationTable from "../OrganizationTable";
-import CampaignTable from "../CampaignTable";
 
 function AdminBody() {
   const [flag, setFlag] = useState("생성");

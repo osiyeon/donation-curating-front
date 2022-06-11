@@ -34,10 +34,8 @@ function HashTagInput({ setHashTags }) {
   const checkAlreadyExists = id => {
     selectedTag.forEach(tag => {
       if (tag.id === id) {
-        console.log("exist");
         return true;
       } else {
-        console.log("false");
         return false;
       }
     });

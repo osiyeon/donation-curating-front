@@ -5,7 +5,6 @@ export const fetchOrganizationList = createAsyncThunk(
   "organizationList/fetchOrganizationList",
   async () => {
     const { data } = await axios.get(`/api/v1/organizations`);
-    console.log("test");
     return data;
   }
 );
@@ -13,10 +12,20 @@ export const fetchOrganizationList = createAsyncThunk(
 export const organizationSlice = createSlice({
   name: "organization",
   initialState: { loading: false, organizationList: [] },
-  reducers: {},
+  reducers: {
+    addOrganization: (state, action) => {
+      state.organizationList.push(action.payload);
+    },
+    deleteOrganizationById: (state, action) => {
+      const orgId = action.payload;
+      const idx = state.organizationList.findIndex(
+        item => item.id === parseInt(orgId)
+      );
+      state.organizationList.splice(idx, 1);
+    }
+  },
   extraReducers: {
     [fetchOrganizationList.pending]: (state, action) => {
-      console.log("pending");
       state.loading = true;
     },
     [fetchOrganizationList.fulfilled]: (state, action) => {
@@ -26,4 +35,6 @@ export const organizationSlice = createSlice({
   }
 });
 
+export const { addOrganization, deleteOrganizationById } =
+  organizationSlice.actions;
 export default organizationSlice.reducer;

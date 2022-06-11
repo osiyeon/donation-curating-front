@@ -1,32 +1,34 @@
-import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Table, Button } from "reactstrap";
 import axios from "axios";
+import Image from "next/image";
+
+import { deleteOrganizationById } from "../../../states/organization";
 
 import style from "./OrganizationTable.module.css";
 
 function OrganizationTable() {
-  const [organizationList, setOrganizationList] = useState([]);
-  useEffect(async () => {
-    const { data: organizations } = await axios.get("/api/v1/organizations");
-    setOrganizationList(organizations);
-  }, []);
+  const dispatch = useDispatch();
+
+  const organizationList = useSelector(
+    state => state.organization.organizationList
+  );
 
   const onClickDeleteButton = e => {
     const id = e.target.id;
-    console.log({ id });
 
     axios
       .delete(`/api/v1/organizations/${id}`)
       .then(res => {
-        console.log({ res });
         if (res.data) {
           // 뷰에서 삭제한 데이터 없애기
           alert("정상적으로 삭제되었습니다. ");
+          dispatch(deleteOrganizationById(id));
         }
       })
       .catch(err => {
         alert("삭제 실패");
-        console.log(err);
+        // console.log(err);
       });
   };
 

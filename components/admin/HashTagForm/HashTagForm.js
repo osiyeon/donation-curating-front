@@ -12,20 +12,15 @@ function HashTagForm() {
   };
 
   const onClickHandler = async () => {
-    console.log({ hashTag });
-    alert("해시태그 저장 완료");
-    await axios.post(`/api/v1/hashtag?tag=${hashTag}`);
+    await axios
+      .post(`/api/v1/hashtag?tag=${hashTag}`)
+      .then(res => {
+        alert("해시태그 저장 완료");
+      })
+      .catch(err => alert("저장 실패"));
 
     setHashtag("");
   };
-
-  // 굳이 없어도 될 듯함
-  //   const onKeyPressHandler = e => {
-  //     if (e.key === "Enter") {
-  //       console.log({ hashTag });
-  //       alert("해시태그 저장 완료");
-  //     }
-  //   };
 
   return (
     <div className={style.HashTagForm}>

@@ -1,6 +1,4 @@
-import Link from "next/link";
-import Head from "next/head";
-import Layout from "../../components/layout";
+import Image from "next/image";
 import Header from "../../components/common/Header";
 import BodyFrame from "../../components/common/BodyFrame";
 

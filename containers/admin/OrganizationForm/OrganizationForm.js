@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Form,
   FormGroup,
@@ -10,11 +11,13 @@ import {
   Button
 } from "reactstrap";
 
-import HashTagInput from "../../../containers/admin/HashTagInput";
-
+import HashTagInput from "../HashTagInput";
+import { addOrganization } from "../../../states/organization";
 import style from "./OrganizationForm.module.css";
 
 function OrganizationForm() {
+  const dispatch = useDispatch();
+
   const [organizationInfo, setOrganizationInfo] = useState({});
   const [selectedHashTag, setSelectedHashTag] = useState([]);
   const [imageFileInfo, setImageFileInfo] = useState([]);
@@ -31,8 +34,6 @@ function OrganizationForm() {
   };
 
   const saveOrganizationHandler = () => {
-    const saveData = { ...organizationInfo, tags: selectedHashTag };
-
     const formData = new FormData();
 
     formData.append(
@@ -49,18 +50,15 @@ function OrganizationForm() {
       .post("/api/v1/organizations", formData)
       .then(res => {
         //확인 필요 - 초기화 안됨
-        // Promise.all(
-        //   setOrganizationInfo({}),
-        //   setSelectedHashTag([]),
-        //   setImageFileInfo([])
-        // );
+
+        dispatch(addOrganization(formData));
         alert("저장되었습니다.");
       })
       .catch(err => {
-        console.log({ err });
+        alert("저장 실패");
+        // console.log({ err });
       });
   };
-  console.log({ organizationInfo, selectedHashTag, imageFileInfo });
 
   return (
     <div className={style.OrganizationForm}>

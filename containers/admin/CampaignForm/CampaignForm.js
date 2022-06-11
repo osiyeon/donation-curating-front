@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import {
   Form,
@@ -10,13 +11,17 @@ import {
   Button
 } from "reactstrap";
 
-import HashTagInput from "../../../containers/admin/HashTagInput";
-import OrganizationDropdownInput from "../../../containers/admin/OrganizationDropdownInput";
+import HashTagInput from "../HashTagInput";
+import OrganizationDropdownInput from "../OrganizationDropdownInput";
+import CampaignDateInputGroup from "../../../components/admin/CampaignDateInputGroup/CampaignDateInputGroup";
+
+import { addCampaign } from "../../../states/campaign";
 
 import style from "./CampaignForm.module.css";
-import CampaignDateInputGroup from "../CampaignDateInputGroup/CampaignDateInputGroup";
 
 function CampaignForm() {
+  const dispatch = useDispatch();
+
   const [campaignInfo, setCampaignInfo] = useState({});
   const [category, setCategory] = useState("SHARING");
   const [selectedHashTag, setSelectedHashTag] = useState([]);
@@ -58,11 +63,6 @@ function CampaignForm() {
     });
   };
 
-  const selectDateInfo = e => {
-    const { value } = e.target;
-    console.log({ value });
-  };
-
   const saveCampaignHandler = () => {
     const saveData = { ...campaignInfo, tags: selectedHashTag };
 
@@ -82,18 +82,14 @@ function CampaignForm() {
       .post("/api/v1/campaigns", formData)
       .then(res => {
         //확인 필요 - 초기화 안됨
-        // Promise.all(
-        //   setOrganizationInfo({}),
-        //   setSelectedHashTag([]),
-        //   setImageFileInfo([])
-        // );
+        dispatch(addCampaign(formData));
         alert("저장되었습니다.");
       })
       .catch(err => {
-        console.log({ err });
+        alert("저장 실패");
+        // console.log({ err });
       });
   };
-  console.log({ campaignInfo });
 
   return (
     <div className={style.CampaignForm}>

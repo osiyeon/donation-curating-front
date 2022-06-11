@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, Badge } from "reactstrap";
 import axios from "axios";
+import Image from "next/image";
 
 import CampainCard from "../../campaign/CampainCard/CampainCard";
 
@@ -40,7 +41,7 @@ function OrganizationDetailModal({
         <img
           src={`/images/organization/${id}.png`}
           className={style.OrganizationDetailModal__image}
-        ></img>
+        />
         <div className={style.OrganizationDetailModal__desc}>{description}</div>
         <div className={style["OrganizationDetailModal__badge-wrapper"]}>
           {hashtags?.map(item => (

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Card, CardImg, CardImgOverlay, CardText } from "reactstrap";
+import { Card, CardImg } from "reactstrap";
 import Header from "../components/common/Header";
 import MainBody from "../containers/MainBody/MainBody";
 import banner from "../public/images/banner.svg";
@@ -13,6 +13,7 @@ import {
 } from "../states/hashtag";
 
 import style from "./style.module.css";
+import { useEffect } from "react";
 
 function Home() {
   const dispatch = useDispatch();

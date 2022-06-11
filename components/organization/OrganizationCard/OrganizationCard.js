@@ -1,15 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  Row,
-  Col,
-  Badge
-} from "reactstrap";
+import { Card, CardBody, CardImg, CardText, Row, Col, Badge } from "reactstrap";
 import OrganizationDetailModal from "../OrganizationDetailModal/OrganizationDetailModal";
 
 import style from "./OrganizationCard.module.css";

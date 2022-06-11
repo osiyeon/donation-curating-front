@@ -1,29 +1,32 @@
-import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Table, Button } from "reactstrap";
 import axios from "axios";
+import Image from "next/image";
+
+import { deleteCampaignById } from "../../../states/campaign";
 
 import style from "./CampaignTable.module.css";
 
 function CampaignTable() {
-  const [campaignList, setCampaignList] = useState([]);
-  useEffect(async () => {
-    const { data: campaigns } = await axios.get("/api/v1/campaigns/");
-    setCampaignList(campaigns);
-  }, []);
+  const dispatch = useDispatch();
+  const campaignList = useSelector(state => state.campaign.campaignList);
 
   const onClickDeleteButton = e => {
     const id = e.target.id;
-    console.log({ id });
 
     axios
       .delete(`/api/v1/campaigns/${id}`)
       .then(res => {
-        console.log({ res });
         if (res.data) {
           // 뷰에서 삭제한 데이터 없애기
+          alert("정상적으로 삭제되었습니다.");
+          dispatch(deleteCampaignById(id));
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        alert("삭제 실패");
+        // console.log(err)
+      });
   };
 
   return (

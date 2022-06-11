@@ -7,7 +7,6 @@ function CampaignDateInputGroup({ setCampaignInfo }) {
 
   const selectDateHandler = e => {
     const { id, value } = e.target;
-    console.log({ value });
     if (id === "startDate") {
       setStartDate(value);
     } else {
