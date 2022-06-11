@@ -79,7 +79,7 @@ export default function CampainCard({ campaign = {}, campaignList = [] }) {
           <div className={style.CampaignCard__dueDate}>기한: {dueDate}</div>
           <div className={style.CampaignCard__hashtagWrapper}>
             {hashtags?.map(item => (
-              <Badge className={style.CampaignCard__card_badge}>
+              <Badge key={item.id} className={style.CampaignCard__card_badge}>
                 {item.tagName}
               </Badge>
             ))}

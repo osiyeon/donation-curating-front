@@ -35,7 +35,10 @@ function OrganizationCard({ organization, campaignList }) {
               </div>
               <div className={style.OrganizationCard__hashtagWrapper}>
                 {hashtags?.map(item => (
-                  <Badge className={style.OrganizationCard__card_badge}>
+                  <Badge
+                    key={item.id}
+                    className={style.OrganizationCard__card_badge}
+                  >
                     {item.tagName}
                   </Badge>
                 ))}

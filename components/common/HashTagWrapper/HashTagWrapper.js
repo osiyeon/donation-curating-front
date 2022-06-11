@@ -15,6 +15,7 @@ function HashTagWrapper({ hashTagList }) {
     <div className={style.HashTagWrapper}>
       {hashTagList.map(list => (
         <Button
+          key={list.id}
           value={list.tagName}
           color="secondary"
           outline

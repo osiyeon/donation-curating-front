@@ -12,28 +12,35 @@ import {
   fetchOrganizationHashTagList
 } from "../states/hashtag";
 
-import style from "./style.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Home() {
   const dispatch = useDispatch();
 
-  Promise.all([
-    dispatch(fetchCampaignList()),
-    dispatch(fetchOrganizationList()),
-    dispatch(fetchHashTagList()),
-    dispatch(fetchCampaignHashTagList()),
-    dispatch(fetchOrganizationHashTagList())
-  ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      dispatch(fetchCampaignList()),
+      dispatch(fetchOrganizationList()),
+      dispatch(fetchHashTagList()),
+      dispatch(fetchCampaignHashTagList()),
+      dispatch(fetchOrganizationHashTagList())
+    ]).then(() => {
+      setLoading(false);
+    });
+  }, []);
 
   return (
-    <>
-      <Header />
-      <Card inverse>
-        <CardImg alt="Card image cap" src={banner.src} />
-      </Card>
-      <MainBody />
-    </>
+    !loading && (
+      <>
+        <Header />
+        <Card inverse>
+          <CardImg alt="Card image cap" src={banner.src} />
+        </Card>
+        <MainBody />
+      </>
+    )
   );
 }
 

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, Badge } from "reactstrap";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 
 import CampainCard from "../../campaign/CampainCard/CampainCard";
@@ -12,17 +11,11 @@ function OrganizationDetailModal({
   name,
   description,
   hashtags,
-  filteredCampaignList,
   isOpen,
   toggle
 }) {
-  const [campaignList, setCampaignList] = useState([]);
-
-  useEffect(async () => {
-    const { data: campaigns } = await axios.get("/api/v1/campaigns/");
-    const filteredCampaignList = campaigns.filter(list => list.orgId === id);
-    setCampaignList(filteredCampaignList);
-  }, [id]);
+  const campaigns = useSelector(state => state.campaign.campaignList);
+  const filteredCampaignList = campaigns.filter(list => list.orgId === id);
 
   return (
     <Modal
@@ -45,15 +38,18 @@ function OrganizationDetailModal({
         <div className={style.OrganizationDetailModal__desc}>{description}</div>
         <div className={style["OrganizationDetailModal__badge-wrapper"]}>
           {hashtags?.map(item => (
-            <Badge className={style.OrganizationDetailModal__badge}>
+            <Badge
+              key={item.id}
+              className={style.OrganizationDetailModal__badge}
+            >
               {item.tagName}
             </Badge>
           ))}
         </div>
         <div className={style.OrganizationDetailModal__divider}></div>
         <div className={style.OrganizationDetailModal__campaignCard}>
-          {campaignList.map(list => (
-            <CampainCard campaign={list} />
+          {filteredCampaignList.map(list => (
+            <CampainCard key={list.id} campaign={list} />
           ))}
         </div>
       </ModalBody>
