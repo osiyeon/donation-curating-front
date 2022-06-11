@@ -11,6 +11,7 @@ function OrganizationDetailModal({
   name,
   description,
   hashtags,
+  orgThumbnail,
   isOpen,
   toggle
 }) {
@@ -32,7 +33,8 @@ function OrganizationDetailModal({
       </ModalHeader>
       <ModalBody className={style.OrganizationDetailModal__body}>
         <img
-          src={`/images/organization/${id}.png`}
+          alt={id}
+          src={orgThumbnail}
           className={style.OrganizationDetailModal__image}
         />
         <div className={style.OrganizationDetailModal__desc}>{description}</div>

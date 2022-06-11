@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import CampainCard from "../../campaign/CampainCard";
 import OrganizationCard from "../../organization/OrganizationCard";
@@ -6,12 +6,7 @@ import OrganizationCard from "../../organization/OrganizationCard";
 import style from "./SearchBody.module.css";
 
 function SearchBody({ value, campaignList, organizationList }) {
-  const [allCampaignList, setAllCampaignList] = useState([]);
-
-  useEffect(async () => {
-    const { data: campaigns } = await axios.get("/api/v1/campaigns");
-    setAllCampaignList(campaigns);
-  }, []);
+  const allCampaignList = useSelector(state => state.campaign.campaignList);
 
   return (
     <>
@@ -24,7 +19,7 @@ function SearchBody({ value, campaignList, organizationList }) {
         <div className={style.SearchBody__divider}></div>
         <div className={style.SearchBody__campaigns}>
           {campaignList.map(list => (
-            <CampainCard campaign={list} />
+            <CampainCard key={list.id} campaign={list} />
           ))}
           {campaignList.length === 0 && (
             <div className={style.SearchBody__none}>검색 결과 없음</div>
@@ -36,6 +31,7 @@ function SearchBody({ value, campaignList, organizationList }) {
         <div className={style.SearchBody__divider}></div>
         {organizationList.map(list => (
           <OrganizationCard
+            key={list.id}
             organization={list}
             campaignList={allCampaignList}
           />

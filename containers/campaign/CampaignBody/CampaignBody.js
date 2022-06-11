@@ -13,7 +13,6 @@ import {
 import classNames from "classnames";
 
 import BodyFrame from "../../../components/common/BodyFrame";
-import CampainCard from "../../../components/campaign/CampainCard";
 import HashTagWrapper from "../../../components/common/HashTagWrapper";
 
 import CampaignCard from "../../../components/campaign/CampainCard";

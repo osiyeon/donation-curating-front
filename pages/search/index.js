@@ -20,7 +20,7 @@ function Search() {
   useEffect(async () => {
     const {
       data: { campaign: campaigns, organization: organizations }
-    } = await axios.get(`/api/v1/search?keyword=${value}`);
+    } = await axios.get(`/api/v1/search?keyword=${encodeURI(value)}`);
 
     setCampaignList(campaigns);
     setOrganizationList(organizations);

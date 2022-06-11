@@ -9,7 +9,9 @@ module.exports = {
         source: "/:path*",
         destination:
           process.env.NODE_EN === "production"
-            ? "http://ec2-15-164-87-12.ap-northeast-2.compute.amazonaws.com:8080"
+            ? encodeURI(
+                "http://ec2-15-164-87-12.ap-northeast-2.compute.amazonaws.com:8080"
+              )
             : "http://localhost:8080/:path*" // Proxy to Backend
       }
     ];

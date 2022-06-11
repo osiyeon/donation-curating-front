@@ -13,7 +13,7 @@ function HashTagForm() {
 
   const onClickHandler = async () => {
     await axios
-      .post(`/api/v1/hashtag?tag=${hashTag}`)
+      .post(`/api/v1/hashtag?tag=${encodeURI(hashTag)}`)
       .then(res => {
         alert("해시태그 저장 완료");
       })

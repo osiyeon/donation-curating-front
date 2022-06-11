@@ -52,6 +52,7 @@ function OrganizationCard({ organization, campaignList }) {
         name={name}
         description={description}
         hashtags={hashtags}
+        orgThumbnail={orgThumbnail}
         filteredCampaignList={filteredCampaignList}
         isOpen={isOpen}
         toggle={onClickHandler}

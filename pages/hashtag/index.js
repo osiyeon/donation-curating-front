@@ -19,7 +19,7 @@ function HashTagSearch() {
   useEffect(async () => {
     const {
       data: { campaign: campaigns, organization: organizations }
-    } = await axios.get(`/api/v1/hashtag/?tag=${value}`);
+    } = await axios.get(`/api/v1/hashtag/?tag=${encodeURI(value)}`);
 
     setCampaignList(campaigns);
     setOrganizationList(organizations);

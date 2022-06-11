@@ -23,7 +23,9 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    overflow-x: auto;
 }
+
 
 .OrganizationDetailModal__badge {
     border-radius: 1rem;
